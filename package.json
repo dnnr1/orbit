@@ -1,0 +1,33 @@
+{
+  "name": "orbit",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter orbit-web dev & pnpm --filter orbit-api dev",
+    "dev:web": "pnpm --filter orbit-web dev",
+    "dev:api": "pnpm --filter orbit-api dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "test:unit": "pnpm -r test:unit",
+    "test:e2e": "pnpm -r test:e2e",
+    "db:generate": "pnpm --filter @orbit/db generate",
+    "db:migrate": "pnpm --filter @orbit/db migrate",
+    "db:push": "pnpm --filter @orbit/db push",
+    "db:seed": "pnpm --filter @orbit/db seed",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
+    "typescript": "^5.7.0"
+  }
+}
