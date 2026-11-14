@@ -11,15 +11,13 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "incremental": true,
-    "plugins": [{ "name": "next" }],
-    "paths": {
-      "@orbit/shared": ["./packages/shared/src"],
-      "@orbit/shared/*": ["./packages/shared/src/*"],
-      "@orbit/db": ["./packages/db/src"],
-      "@orbit/db/*": ["./packages/db/src/*"]
-    }
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "references": [
+    { "path": "./packages/shared" },
+    { "path": "./packages/db" },
+    { "path": "./apps/api" },
+    { "path": "./apps/web" }
+  ],
+  "exclude": ["node_modules", "dist"]
 }

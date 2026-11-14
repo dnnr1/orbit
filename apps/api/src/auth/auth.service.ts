@@ -42,21 +42,19 @@ export class AuthService {
     const slug = generateSlug(data.email.split('@')[0]);
     const orgName = data.email.split('@')[1].split('.')[0];
     
-    const orgId = generateId();
     const userId = generateId();
 
     const passwordHash = await hashPassword(data.password);
 
     await db.transaction(async tx => {
-      await tx.insert(organizations).values({
-        id: orgId,
+      const [org] = await tx.insert(organizations).values({
         name: orgName.charAt(0).toUpperCase() + orgName.slice(1),
         slug: slug + '-' + Date.now().toString(36),
-      });
+      }).returning({ id: organizations.id });
 
       await tx.insert(users).values({
         id: userId,
-        organizationId: orgId,
+        organizationId: org.id,
         email: data.email,
         passwordHash,
         firstName: data.firstName,
@@ -67,7 +65,7 @@ export class AuthService {
       });
     });
 
-    return this.generateTokens(userId, orgId);
+    return this.generateTokens(userId, org.id);
   }
 
   async login(data: LoginUser): Promise<AuthTokens> {

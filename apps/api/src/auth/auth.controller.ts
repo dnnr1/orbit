@@ -29,30 +29,30 @@ export class AuthController {
   @Post('refresh')
   @HttpCode(200)
   async refresh(@Body('refreshToken') refreshToken: string) {
-    return this authService.refreshToken(refreshToken);
+    return this.authService.refreshToken(refreshToken);
   }
 
   @Post('forgot-password')
   @HttpCode(200)
   async forgotPassword(@Body() data: ForgotPassword) {
-    return this authService.forgotPassword(data);
+    return this.authService.forgotPassword(data);
   }
 
   @Post('reset-password')
   @HttpCode(200)
   async resetPassword(@Body() data: ResetPassword) {
-    return this authService.resetPassword(data);
+    return this.authService.resetPassword(data);
   }
 
   @Post('verify-email')
   @HttpCode(200)
   async verifyEmail(@Body() data: VerifyEmail) {
-    return this authService.verifyEmail(data.token);
+    return this.authService.verifyEmail(data.token);
   }
 
   @Get('me')
   @UseGuards(JwtGuard)
   async getMe(@Request() req) {
-    return this authService.getMe(req.user.id);
+    return this.authService.getMe(req.user.id);
   }
 }

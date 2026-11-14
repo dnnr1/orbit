@@ -2,16 +2,19 @@
   "name": "@orbit/shared",
   "version": "1.0.0",
   "description": "Shared types, schemas, and constants for Orbit",
+  "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./*": {
       "types": "./dist/*.d.ts",
-      "import": "./dist/*.js"
+      "import": "./dist/*.js",
+      "default": "./dist/*.js"
     }
   },
   "scripts": {
@@ -19,12 +22,14 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "zod": "^3.24.0"
   },
   "peerDependencies": {
     "react": "^18.3.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22.10.0",
     "typescript": "^5.7.0"
   }

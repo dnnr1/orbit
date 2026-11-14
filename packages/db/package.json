@@ -2,16 +2,19 @@
   "name": "@orbit/db",
   "version": "1.0.0",
   "description": "Database schema, migrations, and client for Orbit",
+  "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./*": {
       "types": "./dist/*.d.ts",
-      "import": "./dist/*.js"
+      "import": "./dist/*.js",
+      "default": "./dist/*.js"
     }
   },
   "scripts": {

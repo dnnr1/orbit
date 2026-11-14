@@ -4,23 +4,29 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "lib": ["ES2022"],
-    "strict": true,
+    "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "baseUrl": "./",
-    "paths": {
-      "@orbit/shared": ["../../packages/shared/src"],
-      "@orbit/shared/*": ["../../packages/shared/src/*"],
-      "@orbit/db": ["../../packages/db/src"],
-      "@orbit/db/*": ["../../packages/db/src/*"]
-    }
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": false,
+    "useDefineForClassFields": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": false
   },
+  "references": [
+    { "path": "../../packages/shared" },
+    { "path": "../../packages/db" }
+  ],
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }

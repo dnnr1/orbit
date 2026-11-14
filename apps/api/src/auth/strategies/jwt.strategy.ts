@@ -1,5 +1,5 @@
 import { PassportStrategy } from '@nestjs/passport';
-import { ExtractToken, Strategy } from 'passport-jwt';
+import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { db } from '@orbit/db';
 import { users } from '@orbit/db';
@@ -16,7 +16,7 @@ export interface JwtUser {
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
     super({
-      jwtFromRequest: ExtractToken.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
       secretOrKey: process.env.JWT_SECRET || 'change-me-in-production',
     });

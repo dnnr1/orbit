@@ -1,4 +1,4 @@
-import { pgTable, uuid, text, timestamp, jsonb } from 'drizzle-orm/pg-core';
+import { pgTable, uuid, text, timestamp, jsonb, boolean } from 'drizzle-orm/pg-core';
 import { users } from './users';
 import { organizations } from './organizations';
 import { NOTIFICATION_TYPES } from '@orbit/shared';
@@ -20,6 +20,9 @@ export const notifications = pgTable('notifications', {
   read: boolean('read').notNull().default(false),
   readAt: timestamp('read_at', { withTimezone: true }),
   createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
 });
