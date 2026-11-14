@@ -43,6 +43,7 @@ export class AuthService {
     const orgName = data.email.split('@')[1].split('.')[0];
     
     const userId = generateId();
+    let orgId: string;
 
     const passwordHash = await hashPassword(data.password);
 
@@ -52,9 +53,11 @@ export class AuthService {
         slug: slug + '-' + Date.now().toString(36),
       }).returning({ id: organizations.id });
 
+      orgId = org.id;
+
       await tx.insert(users).values({
         id: userId,
-        organizationId: org.id,
+        organizationId: orgId,
         email: data.email,
         passwordHash,
         firstName: data.firstName,
@@ -65,7 +68,7 @@ export class AuthService {
       });
     });
 
-    return this.generateTokens(userId, org.id);
+    return this.generateTokens(userId, orgId);
   }
 
   async login(data: LoginUser): Promise<AuthTokens> {
